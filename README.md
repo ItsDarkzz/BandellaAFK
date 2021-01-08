@@ -8,6 +8,7 @@ How to install: https://www.youtube.com/watch?v=e6pcu2GRouA&feature=youtu.be
 How to use:
 This is an AFK bot that is controllable through discord that takes Microsoft and Mojang accounts
 
+
 add
 • %add account_username email password (mojang/microsoft)
 This will add the ALT to the AFK list, log the ALT in and create a channel to control the ALT. Whoever executed the command will get access to the channel
