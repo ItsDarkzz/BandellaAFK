@@ -13,7 +13,7 @@ module.exports = {
         if(LoginQueue.length != 0){
             LoginQueue.forEach(element => {
                 if(element.discordID == message.channel.id){
-                    boldEmbed("⚠ The Alt is in the login queue ⚠");
+                    BoldEmbed("⚠ The Alt is in the login queue ⚠");
                     inqueue = true;
                 }
             });
