@@ -46,3 +46,5 @@ This command will sethome afk at its current location. This is so the bot return
 chat
 •%chat (true/false)
 This command will relay the chat messages the bot receives into its discord channel. true to turn on false to turn off.
+
+For anything else visit https://discord.gg/EscPyG7q89
