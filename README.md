@@ -47,4 +47,6 @@ chat
 •%chat (true/false)
 This command will relay the chat messages the bot receives into its discord channel. true to turn on false to turn off.
 
+The BankBot will alert the channel the current bot is linked to whenever someone pay the bot in game. This is usefull for collecting AFK tax.
+
 For anything else visit https://discord.gg/EscPyG7q89
