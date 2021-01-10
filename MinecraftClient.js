@@ -25,6 +25,24 @@ var options = {
   
 }
 
+var host;
+if(options.host.toLowerCase().indexOf("cosmic") != -1){
+  host = "cosmic"
+}
+else if(options.host.toLowerCase().indexOf("vanity") != -1){
+  host = "vanity"
+}
+else if(options.host.toLowerCase().indexOf("archon") != -1){
+  host = "archon"
+}
+else{
+  if(Settings.BankBot){
+    process.send && process.send({embed: `The BankBot doesn't seem to be support ${options.host} yet open up a ticket to get support`})
+    Settings.BankBot = false;
+  }
+
+}
+
 var MCBOT = new mineflayer.createBot(options);
 
 MCBOT.on("kicked", (reason) =>{
@@ -41,17 +59,32 @@ MCBOT.on("end", () =>{
 
 MCBOT.on("chat", (username, message, translate, jsonMsg, matches) =>{
   lastchat = Date.now();
-  if(chat){
-    let longmsg = "";
-    jsonMsg.extra.forEach(elem => {
-      longmsg += elem.text;
-    })
-    let longmsgarray = longmsg.split("");
-    while(longmsgarray.indexOf("§") != -1){
-      longmsgarray.splice(longmsgarray.indexOf("§"), 2);
-    }
-    process.send({text: longmsgarray.join("")});
+  let longmsg = "";
+  jsonMsg.extra.forEach(elem => {
+    longmsg += elem.text;
+  })
+  let longmsgarray = longmsg.split("");
+  while(longmsgarray.indexOf("§") != -1){
+    longmsgarray.splice(longmsgarray.indexOf("§"), 2);
   }
+  longmsg = longmsgarray.join("");
+  if(chat){
+    process.send({text: longmsg});
+  }
+  if(Settings.BankBot){
+    if(longmsg.startsWith("$") && longmsg.indexOf("has been received from") != -1){
+      longmsg = longmsg.split(" ");
+      let name;
+      if(host == "archon"){
+        name = longmsg[5].replace(".", "");
+      }
+      else{
+        name = longmsg[6].replace(".", "");
+      }
+      process.send && process.send({embed: `${name} has deposited ${longmsg[0]}`})
+    }
+  }
+
 })
 
 MCBOT.on("spawn", () =>{

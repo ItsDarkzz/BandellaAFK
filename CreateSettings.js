@@ -11,7 +11,8 @@ module.exports = function createsettings() {
         Chat_anti_AFK: true,
         Chat_anti_AFK_delay: 300,
         Already_logged_in_msg: "§l[CosmicProxy]§r\n     §7You seem to be logged in already.\n",
-        LoginDelay: 60 
+        LoginDelay: 60,
+        BankBot: true 
     }
     
     

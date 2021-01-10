@@ -28,7 +28,7 @@ module.exports = {
                     BoldEmbed("Alt has been added to the login queue")
                 }
                 else{
-                    BoldEmbed("⚠ The bot seemes to be already logged in ⚠")
+                    BoldEmbed("⚠ The bot seems to be already logged in ⚠")
                 }
             }
         }
