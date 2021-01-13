@@ -14,7 +14,7 @@ module.exports = {
         }
         
         if(3 >= args.length){
-            BoldEmbed(`⚠ To add an ALT do ${Settings.prefix}add account_username email password (mojang/microsoft) ⚠`);
+            BoldEmbed(`⚠️ To add an ALT do ${Settings.prefix}add account_username email password (mojang/microsoft) ⚠️`);
         }
         else{
             if(args[3] == "mojang" || args[3] == "microsoft"){
@@ -56,12 +56,12 @@ module.exports = {
                     });
                 }
                 else{
-                    BoldEmbed(`⚠ This Alt is already being AFK'd ⚠`);
+                    BoldEmbed(`⚠️ This Alt is already being AFK'd ⚠️`);
                 }
                 
             }
             else{
-                BoldEmbed(`⚠ To add an ALT do ${Settings.prefix}add account_username email password (mojang/microsoft) ⚠`);
+                BoldEmbed(`⚠️ To add an ALT do ${Settings.prefix}add account_username email password (mojang/microsoft) ⚠️`);
             }
         }
 

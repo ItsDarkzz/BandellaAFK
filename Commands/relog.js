@@ -13,22 +13,22 @@ module.exports = {
         if(LoginQueue.length != 0){
             LoginQueue.forEach(element => {
                 if(element.discordID == message.channel.id){
-                    BoldEmbed("⚠ The Alt is in the login queue ⚠");
+                    BoldEmbed("⚠️ The Alt is in the login queue ⚠️");
                     inqueue = true;
                 }
             });
         }
         if(!inqueue){
             if(Object.keys(AFKAlts).indexOf(message.channel.id) == -1){
-                BoldEmbed("⚠ No AFKing Alt is linked with this channel ⚠");
+                BoldEmbed("⚠️ No AFKing Alt is linked with this channel ⚠️");
             }
             else{
                 if(Object.keys(ALTProccessOBJ).indexOf(message.channel.id) == -1){
                     LoginQueue.push(AFKAlts[message.channel.id]);
-                    BoldEmbed("Alt has been added to the login queue")
+                    BoldEmbed("✅ Alt has been added to the login queue ✅")
                 }
                 else{
-                    BoldEmbed("⚠ The bot seems to be already logged in ⚠")
+                    BoldEmbed("⚠️ The bot seems to be already logged in ⚠️")
                 }
             }
         }

@@ -10,15 +10,15 @@ module.exports = {
             message.channel.send(Embed);
         }
         if(args.length == 0){1
-            BoldEmbed("⚠ No arguments were given ⚠")
+            BoldEmbed("⚠️ No arguments were given ⚠️")
         }
         else{
             if(Object.keys(ALTProccessOBJ).indexOf(message.channel.id) != -1){
                 ALTProccessOBJ[message.channel.id].send({message: args.join(" ")});
-                BoldEmbed(`Bot has been forced to say: ${args.join(" ")}`)
+                BoldEmbed(`✅ Bot has been forced to say: ${args.join(" ")} ✅`)
             }
             else{
-                BoldEmbed(`⚠ No AFKing Alt is linked with this channel ⚠`)
+                BoldEmbed(`⚠️ No AFKing Alt is linked with this channel ⚠️`)
             }
         }
         

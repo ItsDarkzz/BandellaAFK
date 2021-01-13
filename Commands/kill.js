@@ -13,9 +13,9 @@ module.exports = {
         if(Object.keys(ALTProccessOBJ).indexOf(message.channel.id) != -1){
             dontrelog.push(message.channel.id)
             ALTProccessOBJ[message.channel.id].kill()
-            BoldEmbed(`Alt has been killed ${Settings.prefix}relog to relog the alt`)
+            BoldEmbed(`✅ Alt has been killed ${Settings.prefix}relog to relog the alt ✅`)
         }
-        else{BoldEmbed(`⚠ No AFKing alt is linked with this channel ⚠`)}
+        else{BoldEmbed(`⚠️ No AFKing alt is linked with this channel ⚠️`)}
         message.delete();
     }    
 }

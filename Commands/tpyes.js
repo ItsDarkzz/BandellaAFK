@@ -11,7 +11,7 @@ module.exports = {
         }
         if(Object.keys(ALTProccessOBJ).indexOf(message.channel.id) != -1){
             ALTProccessOBJ[message.channel.id].send({message: "/tpyes"});
-            BoldEmbed("Bot has accepted the tp request, will sethome in 15 seconds")
+            BoldEmbed("✅ Bot has accepted the tp request, will sethome in 15 seconds ✅")
             setTimeout(() =>{
                 try{
                     ALTProccessOBJ[message.channel.id].send({message: "/sethome afk"});
@@ -19,7 +19,7 @@ module.exports = {
             }, 15000)
         }
         else{
-            BoldEmbed(`⚠ No AFKing Alt is linked with this channel ⚠`)
+            BoldEmbed(`⚠️ No AFKing Alt is linked with this channel ⚠️`)
         }
         message.delete();
     }
