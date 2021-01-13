@@ -42,11 +42,6 @@ var  ALTProccessOBJ = {}
 setInterval(() => {
     if(LoginQueue.length != 0){
         console.log("Spawning new alt");
-        try{
-            if(fs.existsSync("./AFKAlts.json")){
-                AFKAlts = JSON.parse(fs.readFileSync("./AFKAlts.json"));
-            }
-        }catch(err){console.error(err)}
 
         let SpawnArgs = LoginQueue.shift()
         ALTProccessOBJ[SpawnArgs.discordID] = cp.fork("MinecraftClient.js", [SpawnArgs.email, SpawnArgs.password, SpawnArgs.AuthType],
