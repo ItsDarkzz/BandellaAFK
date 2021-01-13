@@ -107,7 +107,7 @@ MCBOT.on('error', (err) =>{
   }
   else{
     console.log(err)
-    process.send && process.send({relog: true, embed: `${MCBOT.username} is being has crashed and is being reloged`})
+    process.send && process.send({relog: true, embed: `${MCBOT.username} has crashed and is being reloged`})
   }
   
 })
