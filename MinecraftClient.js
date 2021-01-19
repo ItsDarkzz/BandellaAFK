@@ -4,7 +4,10 @@ const fs = require("fs")
 var chat = false;
 var lastchat = Date.now();
 var ChatBuffer = [];
-
+var drain = {
+  draining: false,
+  user: null
+}
 
 var Settings;
 try{
@@ -71,6 +74,14 @@ MCBOT.on("chat", (username, message, translate, jsonMsg, matches) =>{
   if(chat){
     process.send({text: longmsg});
   }
+  if(longmsg.startsWith("Your Balance: $") && drain.draining == true){
+    longmsg = longmsg.slice(15, longmsg.length);
+    longmsg = longmsg.split(",");
+    longmsg = longmsg.join("");
+    ChatBuffer.push(`/pay ${drain.user} ${longmsg}`);
+    process.send && process.send({embed:`Paid ${drain.user} $${longmsg}`})
+  }
+
   if(Settings.BankBot){
     if(longmsg.startsWith("$") && longmsg.indexOf("has been received from") != -1){
       longmsg = longmsg.split(" ");
@@ -97,7 +108,7 @@ MCBOT.on("login", () =>{
 })
   
 MCBOT.on("death", () =>{
-  ChatBuffer.push("/home afk")
+  ChatBuffer.push("/home home")
 })
 
 MCBOT.on('error', (err) =>{
@@ -123,8 +134,21 @@ process.on("message", (data) =>{
         chat = false;
       }
     }
-    else if(keys.includes("message")){
+    if(keys.includes("message")){
       ChatBuffer.push(data.message);
+    }
+    if(keys.includes("drain")){
+      drain = {
+        draining: true,
+        user: data["drain"]
+      }
+      setTimeout(() =>{
+        drain = {
+          draining: false,
+          user: null
+        }
+      }, 10000) 
+      ChatBuffer.push("/bal")
     }
   }catch(err){console.error(err)}
 })
@@ -140,7 +164,7 @@ setInterval(() => {
 setInterval(() => {
   ChatBuffer.push(Settings.hub_command)
   ChatBuffer.push(Settings.anti_afk_command)
-  ChatBuffer.push("/home afk");
+  ChatBuffer.push("/home home");
 }, 300000)
 
 setInterval(() => {

@@ -10,8 +10,8 @@ module.exports = {
             message.channel.send(Embed);
         }
         if(Object.keys(ALTProccessOBJ).indexOf(message.channel.id) != -1){
-            ALTProccessOBJ[message.channel.id].send({message: "/sethome afk"});
-            BoldEmbed("✅ Bot has /sethome afk ✅")
+            ALTProccessOBJ[message.channel.id].send({message: "/sethome home"});
+            BoldEmbed("✅ Bot has /sethome home ✅")
         }
         else{
             BoldEmbed(`⚠️ No AFKing Alt is linked with this channel ⚠️`)

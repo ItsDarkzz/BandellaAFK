@@ -130,8 +130,17 @@ DB.on("ready",() => {
     console.log("Discord Bot is ready");
 });
 
+function NoAdminRole(message){
+    let Embed = new Discord.MessageEmbed();
+    Embed.setColor('#0099ff')
+    Embed.setTitle("⚠️You don't have permission to execute this command!⚠️")
+    message.channel.send(Embed);
+    message.delete()
+}
+
 
 DB.on("message", async function(message){
+    
     if(!message.content.startsWith(Settings.prefix) || message.author.bot) {return}; 
 
     const args = message.content.slice(Settings.prefix.length).split(" ");
@@ -144,7 +153,19 @@ DB.on("message", async function(message){
             DB.commands.get("remove").execute(message, ALTProccessOBJ, AFKAlts, dontrelog);
         }
         else if(command === "force"){
-            DB.commands.get("force").execute(message, ALTProccessOBJ, args);
+            if(Settings.EnableAdminRole){
+                if(message.member.roles.cache.has(Settings.AdminRoleID)){
+                    DB.commands.get("force").execute(message, ALTProccessOBJ, args);
+                }
+                else{
+                    NoAdminRole(message)
+                }
+                
+            }
+            else{
+                DB.commands.get("force").execute(message, ALTProccessOBJ, args);
+            }
+            
         }
         else if(command === "restart"){
             DB.commands.get("restart").execute(message, ALTProccessOBJ)
@@ -166,6 +187,23 @@ DB.on("message", async function(message){
         }
         else if(command === "help"){
             DB.commands.get("help").execute(message, Settings);
+        }
+        else if(command === "resethomes"){
+            DB.commands.get("resethomes").execute(message, ALTProccessOBJ);
+        }
+        else if(command === "drain"){
+            if(Settings.EnableAdminRole){              
+                if(message.member.roles.cache.has(Settings.AdminRoleID)){
+                    DB.commands.get("drain").execute(message, ALTProccessOBJ, args, Settings);
+                }
+                else{
+                    NoAdminRole(message)
+                }   
+            }
+            else{
+                DB.commands.get("drain").execute(message, ALTProccessOBJ, args, Settings);
+            }
+            
         }
     }catch(err){console.error(err);};
     

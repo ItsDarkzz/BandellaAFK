@@ -1,5 +1,5 @@
 {
-  "token": "",
+  "token": "Nzk0OTE1NjAwNzQ0MTg1ODU2.X_Bw2A.WEzouZ0R3WOVjxBJPWHs4LeLLoc",
   "prefix": "%",
   "host": "cosmicpvp.com",
   "version": "1.8.9",
@@ -8,6 +8,8 @@
   "Chat_anti_AFK": true,
   "Chat_anti_AFK_delay": 240,
   "Already_logged_in_msg": "§l[CosmicProxy]§r\n     §7You seem to be logged in already.\n" ,
-  "LoginDelay": 60,
-  "BankBot": true
+  "LoginDelay": 10,
+  "BankBot": true,
+  "EnableAdminRole": true,
+  "AdminRoleID": "797166115910451250"
 }

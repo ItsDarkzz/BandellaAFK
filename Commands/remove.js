@@ -7,7 +7,7 @@ module.exports = {
         if(Object.keys(AFKAlts).indexOf(message.channel.id) == -1){
             let embed = Discord.MessageEmbed();
             embed.setColor('#0099ff')
-            embed.setTitle("⚠ No AFKing Alt is linked with this channel ⚠")
+            embed.setTitle("⚠️ No AFKing Alt is linked with this channel ⚠️")
             message.channel.send(embed);
         }
         else{
