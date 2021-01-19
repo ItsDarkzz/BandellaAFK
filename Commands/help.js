@@ -15,7 +15,9 @@ module.exports = {
         {name: `${Settings.prefix}force`, value: `This command will force the bot to type whatever you put after the ${Settings.prefix}force `},
         {name: `${Settings.prefix}tpyes`, value: "This command will accept your tp and sethome 15 seconds later"},
         {name: `${Settings.prefix}sethome`, value: "This command will sethome afk at its current location. This is so the bot returns incase it gets killed"},
-        {name: `${Settings.prefix}chat`, value: "This command will relay the chat messages the bot receives into its discord channel. true to turn on false to turn off."}
+        {name: `${Settings.prefix}chat`, value: "This command will relay the chat messages the bot receives into its discord channel. true to turn on false to turn off."},
+        {name: `${Settings.prefix}drain`, value: "This command will drain all alts"},
+        {name: `${Settings.prefix}resethomes`, value: "will change all home names from /home afk to /home home (update due to no ranks on comsic only having one home)"} 
         )
         message.channel.send(Embed);
         message.delete();
