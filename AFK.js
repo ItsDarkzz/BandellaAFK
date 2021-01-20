@@ -44,9 +44,17 @@ setInterval(() => {
         console.log("Spawning new alt");
 
         let SpawnArgs = LoginQueue.shift()
-        ALTProccessOBJ[SpawnArgs.discordID] = cp.fork("MinecraftClient.js", [SpawnArgs.email, SpawnArgs.password, SpawnArgs.AuthType],
-        { stdio: ['inherit', 'inherit', 'inherit', 'ipc']})
-        BindEvents(ALTProccessOBJ[SpawnArgs.discordID], SpawnArgs.discordID, DB);
+        if(Object.keys(SpawnArgs).indexOf("LoginCommand") == -1){
+            ALTProccessOBJ[SpawnArgs.discordID] = cp.fork("MinecraftClient.js", [SpawnArgs.email, SpawnArgs.password, SpawnArgs.AuthTypem],
+            { stdio: ['inherit', 'inherit', 'inherit', 'ipc']})
+            BindEvents(ALTProccessOBJ[SpawnArgs.discordID], SpawnArgs.discordID, DB);
+        }
+        else{
+            ALTProccessOBJ[SpawnArgs.discordID] = cp.fork("MinecraftClient.js", [SpawnArgs.email, SpawnArgs.password, SpawnArgs.AuthTypem, SpawnArgs.LoginCommand],
+            { stdio: ['inherit', 'inherit', 'inherit', 'ipc']})
+            BindEvents(ALTProccessOBJ[SpawnArgs.discordID], SpawnArgs.discordID, DB);
+        }
+        
         if(LoginQueue.length != 0){
             console.log(`Next alt is being Spawned in ${Settings.LoginDelay} seconds`)
         }
@@ -204,6 +212,9 @@ DB.on("message", async function(message){
                 DB.commands.get("drain").execute(message, ALTProccessOBJ, args, Settings);
             }
             
+        }
+        else if(command === "addlogin"){
+            DB.commands.get("addlogin").execute(message, args, ALTProccessOBJ, AFKAlts)
         }
     }catch(err){console.error(err);};
     

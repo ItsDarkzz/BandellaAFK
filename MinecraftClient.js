@@ -28,6 +28,17 @@ var options = {
   
 }
 
+var logincommand;
+var Already_logged_in_msg = ['You are already connected to this proxy!', "§l[CosmicProxy]§r\n     §7You seem to be logged in already.\n", ];
+if(process.argv.length = 6){
+  logincommand = process.argv[5]
+}
+else{
+  logincommand = null;
+}
+
+
+
 var host;
 if(options.host.toLowerCase().indexOf("cosmic") != -1){
   host = "cosmic"
@@ -38,21 +49,32 @@ else if(options.host.toLowerCase().indexOf("vanity") != -1){
 else if(options.host.toLowerCase().indexOf("archon") != -1){
   host = "archon"
 }
-else{
+else if(options.host.toLowerCase().indexOf("jartexnetwork") != -1){
+  host = "jartexnetwork"
   if(Settings.BankBot){
-    process.send && process.send({embed: `The BankBot doesn't seem to be support ${options.host} yet open up a ticket to get support`})
-    Settings.BankBot = false;
+    process.send && process.send({embed: `The BankBot doesn't fully support ${options.host} yet open up a ticket to get support`})
+    settings.bankBot = false;
   }
-
+}
+else{
+  process.send && process.send({embed: `The Bot doesn't fully support ${options.host} yet open up a ticket to get support`})
+  settings.bankBot = false;
 }
 
 var MCBOT = new mineflayer.createBot(options);
 
 MCBOT.on("kicked", (reason) =>{
   reason = JSON.parse(reason)
-  if(reason.text == Settings.Already_logged_in_msg){
+  console.log(reason)
+  if(Already_logged_in_msg.indexOf(reason.text) != -1){
     process.send && process.send({embed: `${MCBOT.username} Seems to already be logged in. %relog to try again`, relog: false});
     console.log(`${MCBOT.username} Seems to already be logged in. %relog to try again`);
+  }
+  else if(host == "vanity"){
+    if(reason.extra[0].text == 'You are already logged on to this server.'){
+      process.send && process.send({embed: `${MCBOT.username} Seems to already be logged in. %relog to try again`, relog: false});
+      console.log(`${MCBOT.username} Seems to already be logged in. %relog to try again`);
+    }
   }
 })
 
@@ -99,6 +121,9 @@ MCBOT.on("chat", (username, message, translate, jsonMsg, matches) =>{
 })
 
 MCBOT.on("spawn", () =>{
+  if(logincommand != null){
+    ChatBuffer.push(logincommand)
+  }
   ChatBuffer.push(Settings.hub_command)
 })
   
@@ -157,6 +182,7 @@ process.on("message", (data) =>{
 setInterval(() => {
   if(ChatBuffer.length != 0){
     let msg = ChatBuffer.shift();
+    console.log(msg);
     MCBOT.chat(msg);
   }
 }, 2000);
