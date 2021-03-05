@@ -10,7 +10,7 @@ module.exports = {
             message.channel.send(Embed);
         }
         if(Object.keys(ALTProccessOBJ).indexOf(message.channel.id) != -1){
-            ALTProccessOBJ[message.channel.id].send({message: "/tpyes"});
+            ALTProccessOBJ[message.channel.id].send({message: "/tpaccept"});
             BoldEmbed("✅ Bot has accepted the tp request, will sethome in 15 seconds ✅")
             setTimeout(() =>{
                 try{
