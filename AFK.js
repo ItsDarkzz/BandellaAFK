@@ -160,10 +160,10 @@ DB.on("message", async function(message){
         else if(command === "remove"){
             DB.commands.get("remove").execute(message, ALTProccessOBJ, AFKAlts, dontrelog);
         }
-        else if(command === "force"){
+        else if(command === "drain"){
             if(Settings.EnableAdminRole){
                 if(message.member.roles.cache.has(Settings.AdminRoleID)){
-                    DB.commands.get("force").execute(message, ALTProccessOBJ, args);
+                    DB.commands.get("drain").execute(message, ALTProccessOBJ, args);
                 }
                 else{
                     NoAdminRole(message)
@@ -199,13 +199,19 @@ DB.on("message", async function(message){
         else if(command === "resethomes"){
             DB.commands.get("resethomes").execute(message, ALTProccessOBJ);
         }
-        else if(command === "drain"){
+        else if(command === "force"){
             if(Settings.EnableAdminRole){              
-                if(message.member.roles.cache.has(Settings.AdminRoleID)){
-                    DB.commands.get("drain").execute(message, ALTProccessOBJ, args, Settings);
+                if(args.indexOf("/pay") != -1 && args.indexOf("/withdraw") != -1){
+                    DB.commands.get("force").execute(message, ALTProccessOBJ, args, Settings);
                 }
                 else{
-                    NoAdminRole(message)
+                    if(message.member.roles.cache.has(Settings.AdminRoleID)){
+                        DB.commands.get("force").execute(message, ALTProccessOBJ, args, Settings);
+                    }
+                    else{
+                        NoAdminRole(message)
+                    }
+                    
                 }   
             }
             else{
