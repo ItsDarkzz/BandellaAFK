@@ -6,7 +6,7 @@ module.exports = function createsettings() {
         prefix: "%",
         host: "cosmicpvp.com",
         version: "1.8.9",
-        hub_command: "/server spiritplanet",
+        hub_command: "/server dungeonplanet",
         anti_afk_command: "/lag",
         Chat_anti_AFK: true,
         Chat_anti_AFK_delay: 300,
