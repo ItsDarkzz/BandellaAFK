@@ -53,12 +53,12 @@ else if (options.host.toLowerCase().indexOf("jartexnetwork") != -1) {
   host = "jartexnetwork"
   if (Settings.BankBot) {
     process.send && process.send({ embed: `The BankBot doesn't fully support ${options.host} yet open up a ticket to get support` })
-    settings.bankBot = false;
+    Settings.bankBot = false;
   }
 }
 else {
   process.send && process.send({ embed: `The Bot doesn't fully support ${options.host} yet open up a ticket to get support` })
-  settings.bankBot = false;
+  Settings.BankBot = false;
 }
 
 var MCBOT = new mineflayer.createBot(options);
