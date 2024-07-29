@@ -1,9 +1,9 @@
 {
   "token": "",
   "prefix": "%",
-  "host": "cosmicpvp.com",
-  "version": "1.8.9",
-  "hub_command": "/server dungeonplanet",
+  "host": "solarbox.aternos.me",
+  "version": "1.`18.2",
+  "hub_command": "/spawn,
   "anti_afk_command": "/lag",
   "Chat_anti_AFK": true,
   "Chat_anti_AFK_delay": 240,
